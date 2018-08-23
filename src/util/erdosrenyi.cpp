@@ -34,6 +34,7 @@ int main(int argc, const char ** argv) {
     size_t K = 10000;
     
     FILE * f = fopen(filename, "w");
+	fprintf(stderr, "%s:%s:%d  -  %s\n", __FILE__, __FUNCTION__, __LINE__, filename);
     
     size_t count = 0;
     size_t accepted = 0;

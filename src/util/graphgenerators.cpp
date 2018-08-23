@@ -28,6 +28,7 @@ int main(int argc, const char ** argv) {
     char filename[1024];
     sprintf(filename, "%s_%d.edgelist", type.c_str(), n);
     FILE * f = fopen(filename, "w");
+	fprintf(stderr, "%s:%s:%d  -  %s\n", __FILE__, __FUNCTION__, __LINE__, filename);
     
     if (type == "chain") {
         for(int x=0; x<n - 1; x++) {

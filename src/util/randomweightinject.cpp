@@ -29,6 +29,7 @@ int main(int argc, const char ** argv) {
     std::cout << "Output: " << outname << std::endl;
     
     FILE * outf = fopen(outname, "w");
+	fprintf(stderr, "%s:%s:%d  -  %s\n", __FILE__, __FUNCTION__, __LINE__, outname);
     
     if (type == "edgelist" ) {
         size_t bytesread = 0;

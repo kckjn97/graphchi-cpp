@@ -594,6 +594,7 @@ namespace graphchi {
             // Write delta log
             std::string deltafname = iomgr->multiplexprefix(0) + base_filename + ".deltalog";
             FILE * df = fopen(deltafname.c_str(), (chicontext.iteration == 0  ? "w" : "a"));
+fprintf(stderr, "%s:%s:%d  -  %s\n", __FILE__, __FUNCTION__, __LINE__, deltafname.c_str());
             fprintf(df, "%d,%lu,%lu,%lf\n", chicontext.iteration, nupdates, work, chicontext.get_delta()); 
             fclose(df);
         }

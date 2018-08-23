@@ -52,6 +52,7 @@ namespace graphchi {
     file_reporter(std::string fname) : filename(fname) {
       // Create new file
         f = fopen(fname.c_str(), "w");
+fprintf(stderr, "%s:%s:%d  -  %s\n", __FILE__, __FUNCTION__, __LINE__, fname.c_str());
         assert(f != NULL);
     }
       

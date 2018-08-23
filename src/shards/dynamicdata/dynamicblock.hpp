@@ -51,6 +51,7 @@ namespace graphchi {
     void write_block_uncompressed_size(std::string blockfilename, int size) {
         std::string szfilename = blockfilename + ".bsize";
         FILE * f = fopen(szfilename.c_str(), "w");
+		fprintf(stderr, "%s:%s:%d  -  %s\n", __FILE__, __FUNCTION__, __LINE__, szfilename.c_str());
         fwrite(&size, 1, sizeof(int), f);
         fclose(f);
         
