@@ -54,8 +54,10 @@ namespace graphchi {
             html_reporter(std::string fname) : filename(fname) {
                  // Create new file
                  f = fopen(fname.c_str(), "w");
-fprintf(stderr, "%s:%s:%d  -  %s\n", __FILE__, __FUNCTION__, __LINE__, fname.c_str());
                  assert(f != NULL);
+				 int hint = 11;
+				 fcntl(fd, F_SET_FILE_RW_HINT, &hint);
+
                  fprintf(f, "<html><head><title>GraphCHI Metrics Report</title>");
                  fprintf(f, "<style>\n");
                  fprintf(f, "table {  border: 1px solid #999999; font: normal 80%%/140%% arial, helvetica, sans-serif; color: #555; background: #fff;}  td, th {border: 1px dotted #bbb; padding: .5em; width:100px}   ");

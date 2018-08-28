@@ -925,7 +925,6 @@ namespace graphchi {
             /* Write meta-file with the number of vertices */
             std::string numv_filename = base_engine::base_filename + ".numvertices";
             FILE * f = fopen(numv_filename.c_str(), "w");
-fprintf(stderr, "%s:%s:%d  -  %s\n", __FILE__, __FUNCTION__, __LINE__, numv_filename.c_str());
             fprintf(f, "%lu\n", base_engine::num_vertices());
             fclose(f);
             

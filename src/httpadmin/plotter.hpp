@@ -50,7 +50,6 @@ namespace graphchi {
     static void init_plot(std::string plotname) {
         std::string dataname = plotdirectory() + plotname + ".dat";
         FILE * df = fopen(dataname.c_str(), "w");
-fprintf(stderr, "%s:%s:%d  -  %s\n", __FILE__, __FUNCTION__, __LINE__, dataname.c_str());
         fclose(df);
         std::cout << "---------- Initialized ------------" << std::endl;
     }
@@ -60,7 +59,6 @@ fprintf(stderr, "%s:%s:%d  -  %s\n", __FILE__, __FUNCTION__, __LINE__, dataname.
         graphchi_context &context = engine->get_context();
         std::string dataname = plotdirectory() + plotname + ".dat";
         FILE * df = fopen(dataname.c_str(), "a");
-fprintf(stderr, "%s:%s:%d  -  %s\n", __FILE__, __FUNCTION__, __LINE__, dataname.c_str());
         assert(df != NULL);
         fprintf(df, "%lf %lf\n", context.runtime(), val);
         fclose(df);

@@ -487,6 +487,9 @@ namespace graphchi {
             
             std::string block_filename = filename_shard_edata_block(shard_filename, blockid, compressed_block_size);
             int f = open(block_filename.c_str(), O_RDWR | O_CREAT, S_IROTH | S_IWOTH | S_IWUSR | S_IRUSR);
+			int hint = 6;
+			fcntl(fd, F_SET_FILE_RW_HINT, &hint);
+
             write_compressed(f, buf, len);
             close(f);
             
@@ -593,7 +596,6 @@ namespace graphchi {
             assert(nshards == 1);
             std::string fname = filename_intervals(basefilename, nshards);
             FILE * f = fopen(fname.c_str(), "w");
-			fprintf(stderr, "%s:%s:%d  -  %s\n", __FILE__, __FUNCTION__, __LINE__, fname.c_str());
             intervals.push_back(std::pair<vid_t,vid_t>(0, max_vertex_id));
             fprintf(f, "%u\n", max_vertex_id);
             fclose(f);
@@ -601,7 +603,6 @@ namespace graphchi {
             /* Write meta-file with the number of vertices */
             std::string numv_filename = basefilename + ".numvertices";
             f = fopen(numv_filename.c_str(), "w");
-			fprintf(stderr, "%s:%s:%d  -  %s\n", __FILE__, __FUNCTION__, __LINE__, numv_filename.c_str());
             fprintf(f, "%u\n", 1 + max_vertex_id);
             fclose(f);
             
@@ -910,13 +911,14 @@ namespace graphchi {
             /* Write intervals */
             std::string fname = filename_intervals(basefilename, nshards);
             FILE * f = fopen(fname.c_str(), "w");
-			fprintf(stderr, "%s:%s:%d  -  %s\n", __FILE__, __FUNCTION__, __LINE__, fname.c_str());
             
             if (f == NULL) {
                 logstream(LOG_ERROR) << "Could not open file: " << fname << " error: " <<
                 strerror(errno) << std::endl;
             }
             assert(f != NULL);
+			int hint = 7;
+			fcntl(fd, F_SET_FILE_RW_HINT, &hint);
             for(int i=0; i<(int)intervals.size(); i++) {
                fprintf(f, "%u\n", intervals[i].second);
             }
@@ -925,7 +927,8 @@ namespace graphchi {
             /* Write meta-file with the number of vertices */
             std::string numv_filename = basefilename + ".numvertices";
             f = fopen(numv_filename.c_str(), "w");
-			fprintf(stderr, "%s:%s:%d  -  %s\n", __FILE__, __FUNCTION__, __LINE__, numv_filename.c_str());
+			int hint2 = 8;
+			fcntl(fd, F_SET_FILE_RW_HINT, &hint2);
             fprintf(f, "%u\n", 1 + max_vertex_id);
             fclose(f);
         }

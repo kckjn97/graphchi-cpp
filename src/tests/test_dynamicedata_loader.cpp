@@ -129,7 +129,6 @@ void generatedata(std::string filename) {
     std::cout << "Generating data..." << std::endl;
     const char * fname = filename.c_str();
     FILE * f = fopen(fname, "w");
-	fprintf(stderr, "%s:%s:%d  -  %s\n", __FILE__, __FUNCTION__, __LINE__, fname);
     set_conf("filetype", "edgelist");
     shouldbe = 0;
     int totalVertices =  200000; // 2 million

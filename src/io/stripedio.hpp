@@ -404,6 +404,10 @@ namespace graphchi {
                     if (rddesc < 0) logstream(LOG_ERROR)  << "Could not open: " << fname << " session: " << session_id
                         << " error: " << strerror(errno) << std::endl;
                     assert(rddesc>=0);
+					if(!readonly){
+						int hint = 9;
+						fcntl(fd, F_SET_FILE_RW_HINT, &hint);
+					}
                     iodesc->readdescs.push_back(rddesc);
 #ifdef F_NOCACHE
                     if (!readonly)
