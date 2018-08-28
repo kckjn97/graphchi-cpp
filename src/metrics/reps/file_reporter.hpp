@@ -53,7 +53,7 @@ namespace graphchi {
       // Create new file
         f = fopen(fname.c_str(), "w");
         assert(f != NULL);
-		int hint = 10;
+		int hint = 6;
 		fcntl(fd, F_SET_FILE_RW_HINT, &hint);
     }
       

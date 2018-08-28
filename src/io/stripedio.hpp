@@ -405,7 +405,7 @@ namespace graphchi {
                         << " error: " << strerror(errno) << std::endl;
                     assert(rddesc>=0);
 					if(!readonly){
-						int hint = 9;
+						int hint = 4;
 						fcntl(fd, F_SET_FILE_RW_HINT, &hint);
 					}
                     iodesc->readdescs.push_back(rddesc);

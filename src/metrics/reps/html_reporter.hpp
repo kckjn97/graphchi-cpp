@@ -55,7 +55,7 @@ namespace graphchi {
                  // Create new file
                  f = fopen(fname.c_str(), "w");
                  assert(f != NULL);
-				 int hint = 11;
+				 int hint = 5;
 				 fcntl(fd, F_SET_FILE_RW_HINT, &hint);
 
                  fprintf(f, "<html><head><title>GraphCHI Metrics Report</title>");
