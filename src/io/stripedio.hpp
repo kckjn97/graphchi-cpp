@@ -406,7 +406,7 @@ namespace graphchi {
                     assert(rddesc>=0);
 					if(!readonly){
 						int hint = 4;
-						fcntl(fd, F_SET_FILE_RW_HINT, &hint);
+						fcntl(rddesc, F_SET_FILE_RW_HINT, &hint);
 					}
                     iodesc->readdescs.push_back(rddesc);
 #ifdef F_NOCACHE

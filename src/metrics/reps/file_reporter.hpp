@@ -35,6 +35,7 @@
 
 #include "metrics/metrics.hpp"
 #include "util/cmdopts.hpp"
+#include <fcntl.h>
 
  
 
@@ -54,7 +55,7 @@ namespace graphchi {
         f = fopen(fname.c_str(), "w");
         assert(f != NULL);
 		int hint = 6;
-		fcntl(fd, F_SET_FILE_RW_HINT, &hint);
+		fcntl(fileno(f), F_SET_FILE_RW_HINT, &hint);
     }
       
       virtual ~file_reporter() {}

@@ -34,6 +34,7 @@
 #include <cstdio>
 
 #include "metrics/metrics.hpp"
+#include <fcntl.h>
  
 
 /**
@@ -56,7 +57,7 @@ namespace graphchi {
                  f = fopen(fname.c_str(), "w");
                  assert(f != NULL);
 				 int hint = 5;
-				 fcntl(fd, F_SET_FILE_RW_HINT, &hint);
+				 fcntl(fileno(f), F_SET_FILE_RW_HINT, &hint);
 
                  fprintf(f, "<html><head><title>GraphCHI Metrics Report</title>");
                  fprintf(f, "<style>\n");

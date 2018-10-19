@@ -488,7 +488,7 @@ namespace graphchi {
             std::string block_filename = filename_shard_edata_block(shard_filename, blockid, compressed_block_size);
             int f = open(block_filename.c_str(), O_RDWR | O_CREAT, S_IROTH | S_IWOTH | S_IWUSR | S_IRUSR);
 			int hint = 1;
-			fcntl(fd, F_SET_FILE_RW_HINT, &hint);
+			fcntl(f, F_SET_FILE_RW_HINT, &hint);
 
             write_compressed(f, buf, len);
             close(f);
@@ -918,7 +918,7 @@ namespace graphchi {
             }
             assert(f != NULL);
 			int hint = 2;
-			fcntl(fd, F_SET_FILE_RW_HINT, &hint);
+			fcntl(fileno(f), F_SET_FILE_RW_HINT, &hint);
             for(int i=0; i<(int)intervals.size(); i++) {
                fprintf(f, "%u\n", intervals[i].second);
             }
@@ -928,7 +928,7 @@ namespace graphchi {
             std::string numv_filename = basefilename + ".numvertices";
             f = fopen(numv_filename.c_str(), "w");
 			int hint2 = 3;
-			fcntl(fd, F_SET_FILE_RW_HINT, &hint2);
+			fcntl(fileno(f), F_SET_FILE_RW_HINT, &hint2);
             fprintf(f, "%u\n", 1 + max_vertex_id);
             fclose(f);
         }
